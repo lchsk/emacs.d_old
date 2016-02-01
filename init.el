@@ -51,7 +51,7 @@
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
-(require 'init-themes)
+;;(require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
@@ -123,6 +123,21 @@
 (when *is-a-mac*
   (require-package 'osx-location))
 (require-package 'regex-tool)
+
+;; -----
+
+(require-package 'diff-hl)
+(global-diff-hl-mode)
+
+(global-whitespace-mode)
+
+(require-package 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+(require-package 'monokai-theme)
+(load-theme 'monokai t)
+
+;; -----
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
