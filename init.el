@@ -129,7 +129,8 @@
 (require-package 'diff-hl)
 (global-diff-hl-mode)
 
-(global-whitespace-mode)
+
+;;(global-whitespace-mode)
 
 (require-package 'neotree)
 (global-set-key [f8] 'neotree-toggle)
@@ -172,7 +173,7 @@
             (message "init completed in %.2fms"
                      (sanityinc/time-subtract-millis after-init-time before-init-time))))
 
-
+(setq make-backup-files nil)
 (provide 'init)
 
 ;; Local Variables:
