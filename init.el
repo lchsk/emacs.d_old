@@ -128,11 +128,15 @@
 
 (require-package 'diff-hl)
 (global-diff-hl-mode)
+(global-linum-mode)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
 
 (setq tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 
+(windmove-default-keybindings 'meta)
 ;;(global-whitespace-mode)
 
 (require-package 'neotree)
