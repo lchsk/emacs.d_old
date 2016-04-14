@@ -168,8 +168,22 @@
 (global-set-key (kbd "C-c k") 'windmove-down)
 
 (require-package 'monokai-theme)
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
 
+(require-package 'jazz-theme)
+;;(load-theme 'monokai t)
+
+(require-package 'zenburn-theme)
+(load-theme 'jazz t)
+
+(require-package 'smartparens)
+(require 'smartparens-config)
+
+(require-package 'rainbow-delimiters)
+(setq rainbow-delimiters t)
+(require-package 'web-mode)
+(require-package 'ace-window)
+(global-set-key (kbd "M-h") 'ace-window)
 ;; -----
 
 ;;----------------------------------------------------------------------------
