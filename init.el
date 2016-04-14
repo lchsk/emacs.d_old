@@ -184,6 +184,7 @@
 (require-package 'web-mode)
 (require-package 'ace-window)
 (global-set-key (kbd "M-h") 'ace-window)
+(setq fci-rule-color "white")
 ;; -----
 
 ;;----------------------------------------------------------------------------
