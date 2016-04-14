@@ -142,6 +142,29 @@
 (require-package 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
+(require 'sr-speedbar)
+(setq speedbar-use-images nil)
+(global-set-key (kbd "s-s") 'sr-speedbar-toggle)
+
+
+(defun go-to-speedbar ()
+  (interactive)
+  (let ((f-name (buffer-name)))
+    (sr-speedbar-open)
+    (sr-speedbar-select-window)
+    (goto-line 1)
+    (search-forward-regexp (concat f-name "$"))
+    (speedbar-expand-line)
+    ))
+(global-set-key "\C-cs" 'go-to-speedbar)
+
+(setq org-replace-disputed-keys t)
+
+(global-set-key (kbd "C-c j") 'windmove-left)
+(global-set-key (kbd "C-c l") 'windmove-right)
+(global-set-key (kbd "C-c i") 'windmove-up)
+(global-set-key (kbd "C-c k") 'windmove-down)
+
 (require-package 'monokai-theme)
 (load-theme 'monokai t)
 
@@ -187,3 +210,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+
