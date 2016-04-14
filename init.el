@@ -135,6 +135,8 @@
 (setq tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+(defvaralias 'js-indent-level 'tab-width)
+;;(setq-default js-indent-level preferred-javascript-indent-level)
 
 (windmove-default-keybindings 'meta)
 ;;(global-whitespace-mode)
