@@ -139,7 +139,6 @@
 ;;(setq-default js-indent-level preferred-javascript-indent-level)
 
 (windmove-default-keybindings 'meta)
-;;(global-whitespace-mode)
 
 (require-package 'neotree)
 (global-set-key [f8] 'neotree-toggle)
@@ -147,7 +146,6 @@
 (require 'sr-speedbar)
 (setq speedbar-use-images nil)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
-
 
 (defun go-to-speedbar ()
   (interactive)
@@ -195,11 +193,22 @@ point reaches the beginning or end of the buffer, stop there."
 ;;(global-set-key (kbd "C-c k") 'windmove-down)
 
 (require-package 'monokai-theme)
-;;(load-theme 'monokai t)
+
+
+
+
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(defvaralias 'c-basic-offset 'tab-width)
+
+(add-hook 'python-mode-hook
+		  (lambda ()
+		    (setq-default indent-tabs-mode t)
+		    (setq-default tab-width 4)
+		    (setq-default py-indent-tabs-mode t)))
+
 
 (require-package 'jazz-theme)
-;;(load-theme 'monokai t)
-
 (require-package 'zenburn-theme)
 (load-theme 'jazz t)
 
@@ -207,15 +216,51 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'smartparens-config)
 
 (require-package 'rainbow-delimiters)
-(setq rainbow-delimiters t)
+(rainbow-delimiters-mode 1)
 (require-package 'web-mode)
 (require-package 'ace-window)
-(global-set-key (kbd "M--") 'ace-window)
-(setq fci-rule-color "white")
+
+
+
+
+
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+
+(defun toggle-comment-on-line ()
+  "Comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(global-set-key (kbd "M-m") 'select-current-line)
+(global-set-key (kbd "M-w") 'toggle-comment-on-line)
+(global-set-key (kbd "M-q") 'ace-window)
+(setq fci-rule-color "navy")
+
 
 (global-set-key (kbd "C-x w") 'whitespace-mode)
 (global-set-key (kbd "M-[") 'previous-buffer)
 (global-set-key (kbd "M-]") 'next-buffer)
+
+
+
+(global-set-key (kbd "C-M-n")
+    (lambda () (interactive) (next-line 5)))
+
+(global-set-key (kbd "C-M-p")
+    (lambda () (interactive) (previous-line 5)))
+
+(global-set-key (kbd "C-s-n")
+    (lambda () (interactive) (scroll-up-line 5)))
+
+(global-set-key (kbd "C-s-p")
+    (lambda () (interactive) (scroll-down-line 5)))
+
+
+
 ;; -----
 
 ;;----------------------------------------------------------------------------
