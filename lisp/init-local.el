@@ -64,9 +64,9 @@ point reaches the beginning or end of the buffer, stop there."
 ;; ---------------
 
 (global-linum-mode 1)
-(global-diff-hl-mode)
-(global-linum-mode)
-(rainbow-delimiters-mode 1)
+(global-diff-hl-mode 1)
+(global-linum-mode 1)
+(rainbow-mode 1)
 (global-prettify-symbols-mode 0)
 
 (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
@@ -106,30 +106,30 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
-(global-set-key "\C-cs" 'go-to-speedbar)
+(global-set-key (kbd "C-M-s") 'go-to-speedbar)
 
 ;; remap C-a to `smarter-move-beginning-of-line'
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
-(global-set-key (kbd "M-m") 'select-current-line)
-(global-set-key (kbd "M-w") 'toggle-comment-on-line)
+(global-set-key (kbd "C-M-,") 'select-current-line)
+(global-set-key (kbd "C-M-.") 'toggle-comment-on-line)
 (global-set-key (kbd "M-q") 'other-window)
 
 (global-set-key (kbd "C-x w") 'whitespace-mode)
-(global-set-key (kbd "M-[") 'previous-buffer)
-(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "M-]") 'previous-buffer)
+(global-set-key (kbd "M-[") 'next-buffer)
 
-(global-set-key (kbd "C-M-n")
-    (lambda () (interactive) (next-line 5)))
+(global-set-key (kbd "C-M-{")
+				(lambda () (interactive) (next-line 5)))
 
-(global-set-key (kbd "C-M-p")
-    (lambda () (interactive) (previous-line 5)))
+(global-set-key (kbd "C-M-}")
+				(lambda () (interactive) (previous-line 5)))
 
-(global-set-key (kbd "C-s-n")
-    (lambda () (interactive) (scroll-up-line 5)))
+(global-set-key (kbd "C-M-[")
+				(lambda () (interactive) (scroll-up-line 5)))
 
-(global-set-key (kbd "C-s-p")
+(global-set-key (kbd "C-M-]")
     (lambda () (interactive) (scroll-down-line 5)))
 
 ;; ------------------
