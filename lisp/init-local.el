@@ -6,9 +6,9 @@
 (require-package 'monokai-theme)
 (require-package 'jazz-theme)
 (require-package 'zenburn-theme)
-(require-package 'rainbow-delimiters)
+(require-package 'rainbow-mode)
 
-(require 'smartparens-config)
+;;(require 'smartparens-config)
 (require 'sr-speedbar)
 
 ;; ------------
@@ -66,8 +66,9 @@ point reaches the beginning or end of the buffer, stop there."
 (global-linum-mode 1)
 (global-diff-hl-mode 1)
 (global-linum-mode 1)
-(rainbow-mode 1)
-(global-prettify-symbols-mode 0)
+(rainbow-delimiters-mode 1)
+(unless (version<= emacs-version "24.4")
+	(global-prettify-symbols-mode 0))
 
 (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (global-fci-mode 1)
