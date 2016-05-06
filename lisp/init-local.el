@@ -70,8 +70,8 @@ point reaches the beginning or end of the buffer, stop there."
 (unless (version<= emacs-version "24.4")
 	(global-prettify-symbols-mode 0))
 
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;; (global-fci-mode 1)
 
 (setq tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
