@@ -5,11 +5,18 @@
 (require-package 'smartparens)
 (require-package 'monokai-theme)
 (require-package 'jazz-theme)
+(require-package 'material-theme)
 (require-package 'zenburn-theme)
 (require-package 'rainbow-mode)
+(require-package 'vkill)
+(require-package 'xkcd)
+(require-package 'nyan-mode)
+(require-package 'helm)
 
 ;;(require 'smartparens-config)
+(require 'helm-config)
 (require 'sr-speedbar)
+(require-package 'recentf)
 
 ;; ------------
 ;; Functions
@@ -59,6 +66,18 @@ point reaches the beginning or end of the buffer, stop there."
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
+(defun revert-this-buffer ()
+  (interactive)
+  (revert-buffer nil t t)
+  (message (concat "Reverted buffer " (buffer-name))))
+
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
 ;; ---------------
 ;; End Functions
 ;; ---------------
@@ -67,8 +86,13 @@ point reaches the beginning or end of the buffer, stop there."
 (global-diff-hl-mode 1)
 (global-linum-mode 1)
 (rainbow-delimiters-mode 1)
+(recentf-mode 1)
+
 (unless (version<= emacs-version "24.4")
-	(global-prettify-symbols-mode 0))
+  (global-prettify-symbols-mode 0))
+
+(autoload 'vkill "vkill" nil t)
+(autoload 'list-unix-processes "vkill" nil t)
 
 ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 ;; (global-fci-mode 1)
@@ -93,6 +117,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-hl-line-mode 1)
 
 (setq org-replace-disputed-keys t)
+(setq recentf-max-saved-items 50)
 
 ;; ---------------
 ;; Key Bindings
@@ -115,7 +140,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-set-key (kbd "C-M-,") 'select-current-line)
 (global-set-key (kbd "C-M-.") 'toggle-comment-on-line)
-(global-set-key (kbd "M-q") 'other-window)
+(global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-x w") 'whitespace-mode)
 (global-set-key (kbd "M-]") 'previous-buffer)
@@ -131,12 +156,24 @@ point reaches the beginning or end of the buffer, stop there."
 				(lambda () (interactive) (scroll-up-line 5)))
 
 (global-set-key (kbd "C-M-]")
-    (lambda () (interactive) (scroll-down-line 5)))
+				(lambda () (interactive) (scroll-down-line 5)))
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-RET") 'helm-imenu)
+
+(global-set-key [f1] 'shell)
+(global-set-key [f2] 'rgrep)
+(global-set-key [f3] 'dired-find-file)
+(global-set-key [f6] 'revert-this-buffer)
+
+(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+
+(global-set-key (kbd "C-S-c") 'auto-complete)
 
 ;; ------------------
 ;; End Key Bindings
 ;; ------------------
 
-(load-theme 'jazz t)
+(load-theme 'material t)
 
 (provide 'init-local)
