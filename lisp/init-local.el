@@ -12,6 +12,7 @@
 (require-package 'xkcd)
 (require-package 'nyan-mode)
 (require-package 'helm)
+(require-package 'ranger)
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
@@ -77,6 +78,15 @@ point reaches the beginning or end of the buffer, stop there."
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
+
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
 
 ;; ---------------
 ;; End Functions
@@ -169,6 +179,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
+(global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; ------------------
 ;; End Key Bindings
