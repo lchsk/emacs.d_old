@@ -12,11 +12,13 @@
 (require-package 'xkcd)
 (require-package 'nyan-mode)
 (require-package 'helm)
+(require-package 'bind-key)
+(require-package 'recentf)
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
 (require 'sr-speedbar)
-(require-package 'recentf)
+(require 'bind-key)
 
 ;; ------------
 ;; Functions
@@ -84,8 +86,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-linum-mode 1)
 (global-diff-hl-mode 1)
-(global-linum-mode 1)
-(rainbow-delimiters-mode 1)
+;; (rainbow-delimiters-mode 1)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (recentf-mode 1)
 
 (unless (version<= emacs-version "24.4")
@@ -166,7 +168,8 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [f3] 'dired-find-file)
 (global-set-key [f6] 'revert-this-buffer)
 
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
+(bind-key* "<C-x C-r>" 'ido-recentf-open)
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 
