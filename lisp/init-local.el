@@ -101,7 +101,7 @@ point reaches the beginning or end of the buffer, stop there."
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 (defvaralias 'js-indent-level 'tab-width)
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
 
