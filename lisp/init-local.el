@@ -14,6 +14,7 @@
 (require-package 'helm)
 (require-package 'bind-key)
 (require-package 'recentf)
+(require-package 'ranger)
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
@@ -80,6 +81,15 @@ point reaches the beginning or end of the buffer, stop there."
       (message "Opening file...")
     (message "Aborting")))
 
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+
 ;; ---------------
 ;; End Functions
 ;; ---------------
@@ -103,15 +113,15 @@ point reaches the beginning or end of the buffer, stop there."
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 (defvaralias 'js-indent-level 'tab-width)
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
 
 (add-hook 'python-mode-hook
-	(lambda ()
-		(setq-default indent-tabs-mode t)
-		(setq-default tab-width 4)
-		(setq-default py-indent-tabs-mode t)))
+		  (lambda ()
+			(setq-default indent-tabs-mode t)
+			(setq-default tab-width 4)
+			(setq-default py-indent-tabs-mode t)))
 
 (setq speedbar-use-images nil)
 (setq fci-rule-color "navy")
@@ -172,6 +182,7 @@ point reaches the beginning or end of the buffer, stop there."
 (bind-key* "<C-x C-r>" 'ido-recentf-open)
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
+(global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; ------------------
 ;; End Key Bindings
