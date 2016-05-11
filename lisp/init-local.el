@@ -14,7 +14,9 @@
 (require-package 'helm)
 (require-package 'bind-key)
 (require-package 'recentf)
-(require-package 'ranger)
+
+(unless (version<= emacs-version "24.4")
+  (require-package 'ranger))
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
@@ -97,8 +99,9 @@ point reaches the beginning or end of the buffer, stop there."
 (global-linum-mode 1)
 (global-diff-hl-mode 1)
 ;; (rainbow-delimiters-mode 1)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (recentf-mode 1)
+(nyan-mode 1)
 
 (unless (version<= emacs-version "24.4")
   (global-prettify-symbols-mode 0))
@@ -130,6 +133,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (setq org-replace-disputed-keys t)
 (setq recentf-max-saved-items 50)
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t)
 
 ;; ---------------
 ;; Key Bindings
@@ -159,19 +164,24 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-[") 'next-buffer)
 
 (global-set-key (kbd "C-M-{")
-				(lambda () (interactive) (next-line 5)))
+(lambda () (interactive) (next-line 5)))
 
 (global-set-key (kbd "C-M-}")
-				(lambda () (interactive) (previous-line 5)))
+(lambda () (interactive) (previous-line 5)))
 
 (global-set-key (kbd "C-M-[")
-				(lambda () (interactive) (scroll-up-line 5)))
+(lambda () (interactive) (scroll-up-line 5)))
 
 (global-set-key (kbd "C-M-]")
-				(lambda () (interactive) (scroll-down-line 5)))
+(lambda () (interactive) (scroll-down-line 5)))
 
+;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-RET") 'helm-imenu)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-c h o") 'helm-occur)
 
 (global-set-key [f1] 'shell)
 (global-set-key [f2] 'rgrep)
@@ -179,7 +189,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [f6] 'revert-this-buffer)
 
 ;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-(bind-key* "<C-x C-r>" 'ido-recentf-open)
+;; (bind-key* "<C-x C-r>" 'ido-recentf-open) ;
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
