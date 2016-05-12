@@ -194,6 +194,10 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
+(add-hook 'c-mode-common-hook
+		  (lambda() 
+			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+
 ;; ------------------
 ;; End Key Bindings
 ;; ------------------
