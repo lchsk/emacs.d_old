@@ -100,8 +100,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-diff-hl-mode 1)
 ;; (rainbow-delimiters-mode 1)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(recentf-mode 1)
-(nyan-mode 1)
+(add-hook 'prog-mode-hook 'nyan-mode)
 
 (unless (version<= emacs-version "24.4")
   (global-prettify-symbols-mode 0))
@@ -124,7 +123,9 @@ point reaches the beginning or end of the buffer, stop there."
 		  (lambda ()
 			(setq-default indent-tabs-mode t)
 			(setq-default tab-width 4)
-			(setq-default py-indent-tabs-mode t)))
+			(setq-default py-indent-tabs-mode t)
+			(rainbow-delimiters-mode 1)
+			))
 
 (setq speedbar-use-images nil)
 (setq fci-rule-color "navy")
