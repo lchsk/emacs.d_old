@@ -154,6 +154,12 @@ point reaches the beginning or end of the buffer, stop there."
 (setq helm-buffers-fuzzy-matching t
       helm-recentf-fuzzy-match    t)
 
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*helm" (* not-newline) "*" eos)
+               (display-buffer-in-side-window)
+               (inhibit-same-window . t)
+               (window-height . 0.4)))
+
 ;; ---------------
 ;; Key Bindings
 ;; ---------------
