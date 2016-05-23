@@ -112,12 +112,15 @@ point reaches the beginning or end of the buffer, stop there."
 ;; (global-fci-mode 1)
 
 (setq tab-width 4)
-(defvaralias 'c-basic-offset 'tab-width)
+
 (defvaralias 'cperl-indent-level 'tab-width)
 (defvaralias 'js-indent-level 'tab-width)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+
 (defvaralias 'c-basic-offset 'tab-width)
+(setq c-default-style "linux")
+(set-default 'indent-tabs-mode nil)
 
 (add-hook 'python-mode-hook
 		  (lambda ()
@@ -126,6 +129,20 @@ point reaches the beginning or end of the buffer, stop there."
 			(setq-default py-indent-tabs-mode t)
 			(rainbow-delimiters-mode 1)
 			))
+
+(defun my-c-mode-common-hook ()
+  (c-set-offset 'substatement-open 0)
+
+  (setq c++-tab-always-indent nil)
+  (setq c-basic-offset 4)                  ;; Default is 2
+  (setq c-indent-level 4)                  ;; Default is 2
+
+  (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60))
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  )
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 (setq speedbar-use-images nil)
 (setq fci-rule-color "navy")
