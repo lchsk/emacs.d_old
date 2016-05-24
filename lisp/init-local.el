@@ -14,9 +14,7 @@
 (require-package 'helm)
 (require-package 'bind-key)
 (require-package 'recentf)
-
-(unless (version<= emacs-version "24.4")
-  (require-package 'ranger))
+(require-package 'magit)
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
@@ -91,6 +89,27 @@ point reaches the beginning or end of the buffer, stop there."
   (open-line 1)
   (next-line 1)
   (yank))
+
+  (defun copy-line (arg)
+    "Copy lines (as many as prefix argument) in the kill ring.
+      Ease of use features:
+      - Move to start of next line.
+      - Appends the copy on sequential calls.
+      - Use newline as last char even on the last line of the buffer.
+      - If region is active, copy its lines."
+    (interactive "p")
+    (let ((beg (line-beginning-position))
+          (end (line-end-position arg)))
+      (when mark-active
+        (if (> (point) (mark))
+            (setq beg (save-excursion (goto-char (mark)) (line-beginning-position)))
+          (setq end (save-excursion (goto-char (mark)) (line-end-position)))))
+      (if (eq last-command 'copy-line)
+          (kill-append (buffer-substring beg end) (< end beg))
+        (kill-ring-save beg end)))
+    (kill-append "\n" nil)
+    (beginning-of-line (or (and arg (1+ arg)) 2))
+    (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
 ;; ---------------
 ;; End Functions
@@ -217,11 +236,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c C-k") 'copy-line)
 
 (add-hook 'c-mode-common-hook
 		  (lambda() 
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
-
 ;; ------------------
 ;; End Key Bindings
 ;; ------------------
