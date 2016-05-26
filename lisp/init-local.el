@@ -141,14 +141,6 @@ point reaches the beginning or end of the buffer, stop there."
 (setq c-default-style "linux")
 (set-default 'indent-tabs-mode nil)
 
-(add-hook 'python-mode-hook
-		  (lambda ()
-			(setq-default indent-tabs-mode t)
-			(setq-default tab-width 4)
-			(setq-default py-indent-tabs-mode t)
-			(rainbow-delimiters-mode 1)
-			))
-
 (defun my-c-mode-common-hook ()
   (c-set-offset 'substatement-open 0)
 
@@ -162,6 +154,16 @@ point reaches the beginning or end of the buffer, stop there."
   )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+(add-hook 'python-mode-hook
+		  (lambda ()
+			(setq-default indent-tabs-mode t)
+			(setq-default tab-width 4)
+			(setq-default py-indent-tabs-mode t)
+			(setq c-basic-offset 4)
+			(rainbow-delimiters-mode 1)
+			))
+
 
 (setq speedbar-use-images nil)
 (setq fci-rule-color "navy")
