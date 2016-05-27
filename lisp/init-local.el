@@ -139,7 +139,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defvaralias 'c-basic-offset 'tab-width)
 (setq c-default-style "linux")
-(set-default 'indent-tabs-mode nil)
 
 (defun my-c-mode-common-hook ()
   (c-set-offset 'substatement-open 0)
