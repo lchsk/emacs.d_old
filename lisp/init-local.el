@@ -16,6 +16,13 @@
 (require-package 'recentf)
 (require-package 'magit)
 
+(require-package 'spaceline)
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+(setq spaceline-minor-modes-p nil)
+(setq spaceline-buffer-encoding-abbrev-p nil)
+(setq spaceline-nyan-cat-p nil)
+
 ;;(require 'smartparens-config)
 (require 'helm-config)
 (require 'sr-speedbar)
