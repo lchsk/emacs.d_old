@@ -15,6 +15,8 @@
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
+(require-package 'key-chord)
+(key-chord-mode 1)
 
 (require-package 'spaceline)
 (require 'spaceline-config)
@@ -122,13 +124,19 @@ point reaches the beginning or end of the buffer, stop there."
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer
-      (delq (current-buffer)
-      (remove-if-not '(
-      lambda (x) (
-         or (buffer-file-name x)
-         (eq 'dired-mode
-        (buffer-local-value 'major-mode x))))
-        (buffer-list)))))
+        (delq (current-buffer)
+              (remove-if-not '(
+                               lambda (x) (
+                                           or (buffer-file-name x)
+                                              (eq 'dired-mode
+                                                  (buffer-local-value 'major-mode x))))
+                             (buffer-list)))))
+
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
 
 ;; ---------------
 ;; End Functions
@@ -243,6 +251,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "M-RET") 'helm-imenu)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
+(key-chord-define-global "bb" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 
@@ -257,6 +266,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c C-k") 'copy-line)
+(global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
 
 (add-hook 'c-mode-common-hook
 		  (lambda() 
