@@ -249,6 +249,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-RET") 'helm-imenu)
+(key-chord-define-global "xx" 'helm-imenu)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (key-chord-define-global "bb" 'helm-mini)
