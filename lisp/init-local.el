@@ -266,7 +266,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(global-set-key (kbd "C-c C-k") 'copy-line)
+(key-chord-define-global "kk" 'copy-line)
 (global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
 
 (add-hook 'c-mode-common-hook
