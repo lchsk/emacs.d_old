@@ -1,7 +1,8 @@
 (require-package 'elisp-slime-nav)
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
-(add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ELisp")))
+(add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ELisp")
+                                  ((global-set-key (kbd "C-S-e") 'eval-buffer))))
 
 (require-package 'lively)
 
@@ -24,9 +25,8 @@
 (after-load 'lisp-mode
   (define-key emacs-lisp-mode-map (kbd "C-x C-e") 'sanityinc/eval-last-sexp-or-region))
 
-(require-package 'ipretty)
-(ipretty-mode 1)
-
+;; (require-package 'ipretty)
+;; (ipretty-mode 1)
 
 (defadvice pp-display-expression (after sanityinc/make-read-only (expression out-buffer-name) activate)
   "Enable `view-mode' in the output buffer - if any - so it can be closed with `\"q\"."
@@ -150,8 +150,8 @@
   "Hook run in all Lisp modes.")
 
 
-(when (maybe-require-package 'aggressive-indent)
-  (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode))
+;; (when (maybe-require-package 'aggressive-indent)
+;; (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode))
 
 (when (maybe-require-package 'adjust-parens)
   (defun sanityinc/adjust-parens-setup ()

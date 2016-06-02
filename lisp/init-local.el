@@ -138,6 +138,13 @@ Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
+(defun move-to-window-line-middle ()
+  (interactive)
+  (let* ((wb-height (window-buffer-height (get-buffer-window)))
+        (actual-height (if (> wb-height (window-height))
+                           (window-height)
+                         wb-height)))
+    (move-to-window-line (/ actual-height 2))))
 ;; ---------------
 ;; End Functions
 ;; ---------------
@@ -234,22 +241,33 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key (kbd "M-]") 'previous-buffer)
 (global-set-key (kbd "M-[") 'next-buffer)
 
-(global-set-key (kbd "C-M-{")
-(lambda () (interactive) (next-line 5)))
+;; (global-set-key (kbd "C-M-{")
+;; (lambda () (interactive) (next-line 5)))
 
-(global-set-key (kbd "C-M-}")
-(lambda () (interactive) (previous-line 5)))
+;; (global-set-key (kbd "C-M-}")
+;; 				(lambda () (interactive) (previous-line 5)))
 
-(global-set-key (kbd "C-M-[")
-(lambda () (interactive) (scroll-up-line 5)))
+;; (global-set-key (kbd "C-M-[")
+;; (lambda () (interactive) (scroll-up-line 5)))
 
-(global-set-key (kbd "C-M-]")
-(lambda () (interactive) (scroll-down-line 5)))
+;; (global-set-key (kbd "C-M-]")
+;; 				(lambda () (interactive) (scroll-down-line 5)))
+
+(bind-key* "M-n" (lambda () (interactive) (scroll-up-line 5)))
+(bind-key* "M-p" (lambda () (interactive) (scroll-down-line 5)))
+(key-chord-define-global "nn" (lambda () (interactive) (next-line 5)))
+(key-chord-define-global "pp" (lambda () (interactive) (previous-line 5)))
+
+(key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
+(key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
+(key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
 
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-RET") 'helm-imenu)
-(key-chord-define-global "xx" 'helm-imenu)
+(key-chord-define-global "xx"
+    (lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
+)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (key-chord-define-global "bb" 'helm-mini)
