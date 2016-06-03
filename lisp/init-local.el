@@ -145,6 +145,11 @@ Repeated invocations toggle between the two most recently open buffers."
                            (window-height)
                          wb-height)))
     (move-to-window-line (/ actual-height 2))))
+
+(defun backward-kill-line (arg)
+  "Kill ARG lines backward."
+  (interactive "p")
+  (kill-line (- 1 arg)))
 ;; ---------------
 ;; End Functions
 ;; ---------------
@@ -284,8 +289,12 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(key-chord-define-global "kk" 'copy-line)
+(key-chord-define-global "cl" 'copy-line)
 (global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
+(key-chord-define-global "bk" 'backward-kill-line)
+
+(key-chord-define-global "bt"
+  (lambda () (interactive) (backward-kill-line 1) (indent-relative)))
 
 (add-hook 'c-mode-common-hook
 		  (lambda() 
