@@ -12,6 +12,10 @@
 (require-package 'xkcd)
 (require-package 'nyan-mode)
 (require-package 'helm)
+(require-package 'helm-swoop)
+;;(require 'helm)
+(require 'helm-swoop)
+(require 'spotify)
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
@@ -260,12 +264,13 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (bind-key* "M-n" (lambda () (interactive) (scroll-up-line 5)))
 (bind-key* "M-p" (lambda () (interactive) (scroll-down-line 5)))
-(key-chord-define-global "nn" (lambda () (interactive) (next-line 5)))
-(key-chord-define-global "pp" (lambda () (interactive) (previous-line 5)))
+(bind-key* "C-c n" (lambda () (interactive) (next-line 5)))
+(bind-key* "C-c p" (lambda () (interactive) (previous-line 5)))
 
 (key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
 (key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
 (key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
+(key-chord-define-global "cc" (lambda () (interactive) (keyboard-escape-quit)))
 
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -278,6 +283,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (key-chord-define-global "bb" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
+(bind-key* "C-c i" 'helm-swoop)
+(bind-key* "M-i" 'helm-multi-swoop-all)
 
 (global-set-key [f1] 'shell)
 (global-set-key [f2] 'rgrep)
@@ -299,6 +306,10 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-hook 'c-mode-common-hook
 		  (lambda() 
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+
+;; spotify
+(global-set-key (kbd "<pause>") #'spotify-playpause)
+(global-set-key (kbd "M-<pause>") #'spotify-next)
 ;; ------------------
 ;; End Key Bindings
 ;; ------------------

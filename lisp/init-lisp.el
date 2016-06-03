@@ -2,7 +2,7 @@
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
   (add-hook hook 'turn-on-elisp-slime-nav-mode))
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ELisp")
-                                  ((global-set-key (kbd "C-S-e") 'eval-buffer))))
+                                  ))
 
 (require-package 'lively)
 
