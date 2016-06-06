@@ -1,3 +1,17 @@
+(setq
+ inhibit-startup-screen t
+ create-lockfiles nil
+ make-backup-files nil
+ column-number-mode t
+ scroll-error-top-bottom t
+ show-paren-delay 0.5
+ use-package-always-ensure t
+ sentence-end-double-space nil)
+
+(electric-indent-mode 0)
+
+(global-unset-key (kbd "C-z"))
+
 (require-package 'diff-hl)
 (require-package 'neotree)
 (require-package 'web-mode)
@@ -22,8 +36,28 @@
 (require-package 'magit)
 (require-package 'key-chord)
 ;;(key-chord-mode 1)
+(require-package 'autopair)
+(require 'autopair)
+(autopair-global-mode)
+
+(require-package 'hackernews)
+(require-package 'wiki-summary)
+
+
+
+
+(require-package 'go-mode)
+(require 'go-mode)
+
+(require-package 'ensime)
+(add-hook 'scala-mode-hook 'ensime-mode)
+
+(require-package 'golden-ratio)
+(require 'golden-ratio)
+(golden-ratio-mode 1)
 
 (require-package 'spaceline)
+
 (require 'spaceline-config)
 (spaceline-spacemacs-theme)
 (setq spaceline-minor-modes-p nil)
