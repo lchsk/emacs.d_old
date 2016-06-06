@@ -16,6 +16,7 @@
 ;;(require 'helm)
 (require 'helm-swoop)
 (require-package 'spotify)
+(require 'spotify)
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
@@ -233,7 +234,6 @@ Repeated invocations toggle between the two most recently open buffers."
 ;;(global-set-key (kbd "C-c i") 'windmove-up)
 ;;(global-set-key (kbd "C-c k") 'windmove-down)
 
-
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
 (global-set-key (kbd "C-M-s") 'go-to-speedbar)
@@ -242,13 +242,17 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
-(global-set-key (kbd "C-M-,") 'select-current-line)
-(global-set-key (kbd "C-M-.") 'toggle-comment-on-line)
+;; (global-set-key (kbd "C-M-,") 'select-current-line)
+
+;; TODO: Merge those two
+(bind-key* "M-;" 'toggle-comment-on-line)
+(bind-key* "C-x ;" 'comment-or-uncomment-region)
+
 (global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-x w") 'whitespace-mode)
-(global-set-key (kbd "M-]") 'previous-buffer)
-(global-set-key (kbd "M-[") 'next-buffer)
+(global-set-key (kbd "M-[") 'previous-buffer)
+(global-set-key (kbd "M-]") 'next-buffer)
 
 ;; (global-set-key (kbd "C-M-{")
 ;; (lambda () (interactive) (next-line 5)))
@@ -267,6 +271,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (bind-key* "C-c n" (lambda () (interactive) (next-line 5)))
 (bind-key* "C-c p" (lambda () (interactive) (previous-line 5)))
 
+(bind-key* "C-w" (lambda () (interactive) (kill-whole-line)))
+
 ;;(key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
 ;;(key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
 ;;(key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
@@ -274,10 +280,12 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-RET") 'helm-imenu)
+;; (global-set-key (kbd "M-RET") 'helm-imenu)
 ;;(key-chord-define-global "xx"
-;;    (lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
-;;)
+(bind-key* "M-q"
+(lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
+)
+
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 ;;(key-chord-define-global "bb" 'helm-mini)
