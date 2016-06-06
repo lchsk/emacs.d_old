@@ -20,7 +20,7 @@
 (require-package 'recentf)
 (require-package 'magit)
 (require-package 'key-chord)
-(key-chord-mode 1)
+;;(key-chord-mode 1)
 
 (require-package 'spaceline)
 (require 'spaceline-config)
@@ -267,20 +267,20 @@ Repeated invocations toggle between the two most recently open buffers."
 (bind-key* "C-c n" (lambda () (interactive) (next-line 5)))
 (bind-key* "C-c p" (lambda () (interactive) (previous-line 5)))
 
-(key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
-(key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
-(key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
-(key-chord-define-global "cc" (lambda () (interactive) (keyboard-escape-quit)))
+;;(key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
+;;(key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
+;;(key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
+;;(key-chord-define-global "cc" (lambda () (interactive) (keyboard-escape-quit)))
 
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-RET") 'helm-imenu)
-(key-chord-define-global "xx"
-    (lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
-)
+;;(key-chord-define-global "xx"
+;;    (lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
+;;)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
-(key-chord-define-global "bb" 'helm-mini)
+;;(key-chord-define-global "bb" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (bind-key* "C-c i" 'helm-swoop)
@@ -296,12 +296,12 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (global-set-key (kbd "C-S-c") 'auto-complete)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(key-chord-define-global "cl" 'copy-line)
+;;(key-chord-define-global "cl" 'copy-line)
 (global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
-(key-chord-define-global "bk" 'backward-kill-line)
+;;(key-chord-define-global "bk" 'backward-kill-line)
 
-(key-chord-define-global "bt"
-  (lambda () (interactive) (backward-kill-line 1) (indent-relative)))
+;;(key-chord-define-global "bt"
+;;  (lambda () (interactive) (backward-kill-line 1) (indent-relative)))
 
 (add-hook 'c-mode-common-hook
 		  (lambda() 
