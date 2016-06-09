@@ -36,21 +36,20 @@
 (require-package 'magit)
 (require-package 'key-chord)
 ;;(key-chord-mode 1)
-(require-package 'autopair)
-(require 'autopair)
-(autopair-global-mode)
+;; (require-package 'autopair)
+;; (require 'autopair)
+;; (autopair-global-mode)
 
 (require-package 'hackernews)
 (require-package 'wiki-summary)
 
-
-
-
 (require-package 'go-mode)
 (require 'go-mode)
 
-(require-package 'ensime)
-(add-hook 'scala-mode-hook 'ensime-mode)
+;;(require-package 'ensime)
+;;(use-package ensime
+;;  :commands ensime ensime-mode)
+;;(add-hook 'scala-mode-hook 'ensime-mode)
 
 (require-package 'golden-ratio)
 (require 'golden-ratio)
@@ -280,7 +279,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; TODO: Merge those two
 (bind-key* "M-;" 'toggle-comment-on-line)
-(bind-key* "C-x ;" 'comment-or-uncomment-region)
+(bind-key* "C-c ;" 'comment-or-uncomment-region)
 
 (global-set-key (kbd "M-o") 'other-window)
 
@@ -302,27 +301,26 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (bind-key* "M-n" (lambda () (interactive) (scroll-up-line 5)))
 (bind-key* "M-p" (lambda () (interactive) (scroll-down-line 5)))
-(bind-key* "C-c n" (lambda () (interactive) (next-line 5)))
-(bind-key* "C-c p" (lambda () (interactive) (previous-line 5)))
+;; (bind-key* "C-c n" (lambda () (interactive) (next-line 5)))
+;; (bind-key* "C-c p" (lambda () (interactive) (previous-line 5)))
 
-(bind-key* "C-w" (lambda () (interactive) (kill-whole-line)))
+(bind-key* "C-c w" (lambda () (interactive) (kill-whole-line)))
 
-;;(key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
-;;(key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
+(bind-key* "C-c t" (lambda () (interactive) (move-to-window-line 0)))
+(bind-key* "C-c b" (lambda () (interactive) (move-to-window-line -1)))
+(bind-key* "C-c m" (lambda () (interactive) (move-to-window-line-middle)))
+;; (key-chord-define-global "hh" (lambda () (interactive) (move-to-window-line 0)))
+;; (key-chord-define-global "ll" (lambda () (interactive) (move-to-window-line -1)))
 ;;(key-chord-define-global "mm" (lambda () (interactive) (move-to-window-line-middle)))
 ;;(key-chord-define-global "cc" (lambda () (interactive) (keyboard-escape-quit)))
 
 ;; Helm key bindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 ;; (global-set-key (kbd "M-RET") 'helm-imenu)
-;;(key-chord-define-global "xx"
-(bind-key* "M-q"
-(lambda () (interactive) (helm-imenu) (recenter-top-bottom 2))
-)
+(bind-key* "M-q" (lambda () (interactive) (helm-imenu)))
 
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-;;(key-chord-define-global "bb" 'helm-mini)
+(bind-key* "C-i" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (bind-key* "C-c i" 'helm-swoop)
@@ -333,20 +331,17 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-set-key [f3] 'dired-find-file)
 (global-set-key [f6] 'revert-this-buffer)
 
-;; (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-;; (bind-key* "<C-x C-r>" 'ido-recentf-open) ;
+(bind-key* "C-c a" 'auto-complete)
+(bind-key* "C-c d" 'duplicate-line)
+(bind-key* "C-c p" 'switch-to-previous-buffer)
 
-(global-set-key (kbd "C-S-c") 'auto-complete)
-(global-set-key (kbd "C-c d") 'duplicate-line)
-;;(key-chord-define-global "cl" 'copy-line)
-(global-set-key (kbd "C-c b") 'switch-to-previous-buffer)
-;;(key-chord-define-global "bk" 'backward-kill-line)
-
-;;(key-chord-define-global "bt"
-;;  (lambda () (interactive) (backward-kill-line 1) (indent-relative)))
+(bind-key* "C-c c l" 'copy-line)
+(bind-key* "C-c k b" 'backward-kill-line)
+(bind-key* "C-c k i" (lambda() (interactive) (backward-kill-line 1) (indent-relative)))
+(bind-key* "C-c k a" (lambda() (interactive) (smarter-move-beginning-of-line 1) (kill-line)))
 
 (add-hook 'c-mode-common-hook
-		  (lambda() 
+		  (lambda()
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 ;; spotify
