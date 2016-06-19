@@ -30,6 +30,8 @@
 ;;(require 'helm)
 (require 'helm-swoop)
 (require-package 'spotify)
+(lambda () (spotify-enable-song-notifications))
+(require-package 'helm-spotify)
 (require 'spotify)
 (require-package 'bind-key)
 (require-package 'recentf)
@@ -54,7 +56,7 @@
 (require-package 'golden-ratio)
 (require 'golden-ratio)
 (golden-ratio-mode 1)
-(setq golden-ratio-auto-scale t)
+(golden-ratio-auto-scale 1)
 
 (require-package 'spaceline)
 
@@ -219,9 +221,9 @@ Repeated invocations toggle between the two most recently open buffers."
 (setq c-default-style "linux")
 
 (defun my-c-mode-common-hook ()
-  (c-set-offset 'substatement-open 4)
+  (c-set-offset 'substatement-open 0)
 
-  (lambda () (c-toggle-electric-state 1))
+  ;; (lambda () (c-toggle-electric-state 1))
   (setq c++-tab-always-indent nil)
   (setq c-basic-offset 4)                  ;; Default is 2
   (setq c-indent-level 4)                  ;; Default is 2
