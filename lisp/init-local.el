@@ -26,7 +26,7 @@
 (require-package 'xkcd)
 (require-package 'nyan-mode)
 (require-package 'helm)
-;;(require-package 'helm-swoop)
+(require-package 'helm-swoop)
 ;;(require 'helm)
 (require 'helm-swoop)
 (require-package 'spotify)
