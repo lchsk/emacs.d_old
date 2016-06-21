@@ -24,7 +24,7 @@
 (require-package 'rainbow-mode)
 (require-package 'vkill)
 (require-package 'xkcd)
-(require-package 'nyan-mode)
+;; (require-package 'nyan-mode)
 (require-package 'helm)
 (require-package 'helm-swoop)
 ;;(require 'helm)
@@ -59,13 +59,14 @@
 
 (setq golden-ratio-auto-scale t)
 
-(require-package 'spaceline)
+;; Spaceline
 
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-(setq spaceline-minor-modes-p nil)
-(setq spaceline-buffer-encoding-abbrev-p nil)
-(setq spaceline-nyan-cat-p nil)
+;; (require-package 'spaceline)
+;; (require 'spaceline-config)
+;; (spaceline-spacemacs-theme)
+;; (setq spaceline-minor-modes-p nil)
+;; (setq spaceline-buffer-encoding-abbrev-p nil)
+;; (setq spaceline-nyan-cat-p nil)
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
@@ -200,7 +201,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-diff-hl-mode 1)
 ;; (rainbow-delimiters-mode 1)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'nyan-mode)
+;; (add-hook 'prog-mode-hook 'nyan-mode)
 
 (unless (version<= emacs-version "24.4")
   (global-prettify-symbols-mode 0))
@@ -325,7 +326,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (bind-key* "M-q" (lambda () (interactive) (helm-imenu)))
 
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(bind-key* "C-i" 'helm-mini)
+(bind-key "C-i" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (bind-key* "C-c i" 'helm-swoop)
@@ -348,6 +349,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (add-hook 'c-mode-common-hook
 		  (lambda()
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+
+(global-set-key (kbd "TAB") 'self-insert-command)
 
 ;; spotify
 (global-set-key (kbd "<pause>") #'spotify-playpause)
