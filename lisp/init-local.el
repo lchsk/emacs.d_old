@@ -326,7 +326,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (bind-key* "M-q" (lambda () (interactive) (helm-imenu)))
 
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(bind-key "C-i" 'helm-mini)
+(bind-key "M-z" 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (bind-key* "C-c i" 'helm-swoop)
@@ -351,6 +351,7 @@ Repeated invocations toggle between the two most recently open buffers."
 			(local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (global-set-key (kbd "TAB") 'self-insert-command)
+
 
 ;; spotify
 (global-set-key (kbd "<pause>") #'spotify-playpause)
