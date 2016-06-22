@@ -39,10 +39,10 @@
 (require-package 'key-chord)
 ;; (require-package 'hl-todo)
 (require-package 'gh-md)
-(require-package 'sql-indent)
+;; (require-package 'sql-indent)
 
-	(eval-after-load "sql"
-  '(load-library "sql-indent"))
+	;; (eval-after-load "sql"
+  ;; '(load-library "sql-indent"))
 ;;(key-chord-mode 1)
 ;; (require-package 'autopair)
 ;; (require 'autopair)
