@@ -252,6 +252,7 @@ Repeated invocations toggle between the two most recently open buffers."
 			(setq-default py-indent-tabs-mode t)
 			(setq c-basic-offset 4)
 			(rainbow-delimiters-mode 1)
+            (global-flycheck-mode -1)
 			))
 
 
