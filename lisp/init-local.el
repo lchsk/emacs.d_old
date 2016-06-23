@@ -36,6 +36,8 @@
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
+(require-package 'buffer-move)
+(require 'buffer-move)
 (require-package 'key-chord)
 ;; (require-package 'hl-todo)
 (require-package 'gh-md)
@@ -278,6 +280,11 @@ Repeated invocations toggle between the two most recently open buffers."
 ;;(global-set-key (kbd "C-c l") 'windmove-right)
 ;;(global-set-key (kbd "C-c i") 'windmove-up)
 ;;(global-set-key (kbd "C-c k") 'windmove-down)
+
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "s-s") 'sr-speedbar-toggle)
