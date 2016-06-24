@@ -36,8 +36,13 @@
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
+
 (require-package 'buffer-move)
 (require 'buffer-move)
+
+(require-package 'goto-chg)
+(require 'goto-chg)
+
 (require-package 'key-chord)
 ;; (require-package 'hl-todo)
 (require-package 'gh-md)
@@ -84,6 +89,15 @@
 ;; ------------
 ;; Functions
 ;; ------------
+
+(defun goto-first-reference ()
+  (interactive)
+  (eval
+   `(progn
+      (goto-char (point-min))
+      (search-forward-regexp
+       (rx symbol-start ,(thing-at-point 'symbol) symbol-end))
+      (beginning-of-thing 'symbol))))
 
 (defun go-to-speedbar ()
   (interactive)
@@ -359,6 +373,15 @@ Repeated invocations toggle between the two most recently open buffers."
 (bind-key* "C-c k b" 'backward-kill-line)
 (bind-key* "C-c k i" (lambda() (interactive) (backward-kill-line 1) (indent-relative)))
 (bind-key* "C-c k a" (lambda() (interactive) (smarter-move-beginning-of-line 1) (kill-line)))
+
+(bind-key* "C-," 'goto-last-change)
+(bind-key* "C-." 'goto-last-change-reverse)
+
+(bind-key* "C-c h" 'highlight-symbol)
+(bind-key* "C-c R" 'highlight-symbol-remove-all)
+(bind-key* "C-c n" 'highlight-symbol-next)
+(bind-key* "C-c p" 'highlight-symbol-prev)
+(bind-key* "C-c f" 'goto-first-reference)
 
 (add-hook 'c-mode-common-hook
 		  (lambda()
