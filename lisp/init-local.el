@@ -36,6 +36,7 @@
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
+(require-package 'window-numbering)
 
 (require-package 'buffer-move)
 (require 'buffer-move)
@@ -221,6 +222,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (global-linum-mode 1)
 (global-diff-hl-mode 1)
+(window-numbering-mode 1)
 ;; (rainbow-delimiters-mode 1)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 ;; (add-hook 'prog-mode-hook 'nyan-mode)
