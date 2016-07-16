@@ -8,31 +8,31 @@
  use-package-always-ensure t
  sentence-end-double-space nil)
 
-(electric-indent-mode 0)
+;;(electric-indent-mode 0)
 
 (global-unset-key (kbd "C-z"))
 
 (require-package 'diff-hl)
-(require-package 'neotree)
+;;(require-package 'neotree)
 (require-package 'web-mode)
 ;;(require-package 'ace-window)
 (require-package 'smartparens)
-(require-package 'monokai-theme)
-(require-package 'jazz-theme)
+;;(require-package 'monokai-theme)
+;;(require-package 'jazz-theme)
 (require-package 'material-theme)
-(require-package 'zenburn-theme)
+;;(require-package 'zenburn-theme)
 (require-package 'rainbow-mode)
-(require-package 'vkill)
-(require-package 'xkcd)
+;;(require-package 'vkill)
+;;(require-package 'xkcd)
 ;; (require-package 'nyan-mode)
 (require-package 'helm)
 (require-package 'helm-swoop)
 ;;(require 'helm)
 (require 'helm-swoop)
-(require-package 'spotify)
-(lambda () (spotify-enable-song-notifications))
-(require-package 'helm-spotify)
-(require 'spotify)
+;;(require-package 'spotify)
+;;(lambda () (spotify-enable-song-notifications))
+;;(require-package 'helm-spotify)
+;;(require 'spotify)
 (require-package 'bind-key)
 (require-package 'recentf)
 (require-package 'magit)
@@ -44,9 +44,9 @@
 (require-package 'goto-chg)
 (require 'goto-chg)
 
-(require-package 'key-chord)
+;;(require-package 'key-chord)
 ;; (require-package 'hl-todo)
-(require-package 'gh-md)
+;;(require-package 'gh-md)
 ;; (require-package 'sql-indent)
 
 	;; (eval-after-load "sql"
@@ -56,8 +56,8 @@
 ;; (require 'autopair)
 ;; (autopair-global-mode)
 
-(require-package 'hackernews)
-(require-package 'wiki-summary)
+;;(require-package 'hackernews)
+;;(require-package 'wiki-summary)
 
 (require-package 'go-mode)
 (require 'go-mode)
@@ -67,11 +67,11 @@
 ;;  :commands ensime ensime-mode)
 ;;(add-hook 'scala-mode-hook 'ensime-mode)
 
-(require-package 'golden-ratio)
-(require 'golden-ratio)
-(golden-ratio-mode 1)
+;;(require-package 'golden-ratio)
+;;(require 'golden-ratio)
+;; (golden-ratio-mode 1)
 
-(setq golden-ratio-auto-scale t)
+;; (setq golden-ratio-auto-scale t)
 
 ;; Spaceline
 
@@ -84,7 +84,7 @@
 
 ;;(require 'smartparens-config)
 (require 'helm-config)
-(require 'sr-speedbar)
+;;(require 'sr-speedbar)
 (require 'bind-key)
 
 ;; ------------
