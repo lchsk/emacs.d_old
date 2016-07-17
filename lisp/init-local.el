@@ -288,6 +288,17 @@ Repeated invocations toggle between the two most recently open buffers."
                (inhibit-same-window . t)
                (window-height . 0.4)))
 
+(defun kill-thing-at-point (thing)
+  "Kill the `thing-at-point' for the specified kind of THING."
+  (let ((bounds (bounds-of-thing-at-point thing)))
+    (if bounds
+        (kill-region (car bounds) (cdr bounds))
+      (error "No %s at point" thing))))
+
+(defun kill-word-at-point ()
+  "Kill the word at point."
+  (interactive)
+  (kill-thing-at-point 'word))
 ;; ---------------
 ;; Key Bindings
 ;; ---------------
@@ -373,6 +384,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (bind-key* "C-c c l" 'copy-line)
 (bind-key* "C-c k b" 'backward-kill-line)
+(bind-key* "C-c w" 'kill-word-at-point)
 (bind-key* "C-c k i" (lambda() (interactive) (backward-kill-line 1) (indent-relative)))
 (bind-key* "C-c k a" (lambda() (interactive) (smarter-move-beginning-of-line 1) (kill-line)))
 
